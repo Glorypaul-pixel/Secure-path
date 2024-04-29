@@ -37,28 +37,29 @@ function Statistic() {
     );
   } else if (reports.length === 0) {
     content = (
-      <div className="flex flex-col items-center text-center">
-        <h2 className="text-2xl font-medium">No Complaints Yet</h2>
+      <div className="flex flex-col items-center justify-center text-center">
+        <h2 className="text-1xl font-medium">No Complaints Yet</h2>
         <p className="text-grey-200">Your Complaints will show up here</p>
       </div>
     );
   } else {
     // add more content here
     content = (
-      <div className="flex flex-col space-y-6 w-full">
+      <div className="flex flex-col w-full">
         <div>
-
-            <h2 className="text-2xl font-medium">Complaints</h2>
+          <h2 className="text-3xl pt-3 underline underline-offset-8 text-center font-bold ">
+            Complaints
+          </h2>
         </div>
-        <div
-            className="flex flex-row justify-between items-center"
-          >
-            <div className="flex flex-row items-center">
-              <span className="text-2xl font-bold">Report ID</span>
-              <span className="text-xl font-medium ml-4">Full name of reporter</span>
-            </div>
-              <span className="text-xl font-medium ml-4">Location of report</span>
+        <div className="flex flex-row justify-between items-center">
+          <div className="flex flex-row items-center">
+            <span className="text-2xl font-bold">Report ID</span>
+            <span className="text-xl font-medium ml-4">
+              Full name of reporter
+            </span>
           </div>
+          <span className="text-xl font-medium ml-4">Location of report</span>
+        </div>
         {reports?.map((val, index) => (
           <div
             key={index}
@@ -66,7 +67,9 @@ function Statistic() {
           >
             <div className="flex flex-row items-center">
               <span className="text-2xl font-bold">{index + 1}</span>
-              <span className="text-xl font-medium ml-4">{val?.reporter?.full_name}</span>
+              <span className="text-xl font-medium ml-4">
+                {val?.reporter?.full_name}
+              </span>
             </div>
             <span className="text-xl font-medium">{val.location}</span>
           </div>
@@ -80,7 +83,9 @@ function Statistic() {
       </div>
     );
   }
-  return <div className="w-3/4 text-white flex flex-col items-center">{content}</div>;
+  return (
+    <div className="w-3/4 text-white flex flex-col items-center">{content}</div>
+  );
 }
 
 export default Statistic;

@@ -63,37 +63,38 @@ export function LogComplaint() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         if (data.success) {
           setSubmitted(true);
           setFormState(initialState);
-<<<<<<< HEAD
+
+          // fetch(
+          //   "https://security-backend-12f1.onrender.com/v1/complaint/report-complaint",
+          //   {
+          //     method: "POST",
+          //     body: JSON.stringify({
+          //       complaint_id: data.data.id,
+          //       email: "chimdi4332@gmail.com", // add the email of the recipent here
+          //     }),
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //     },
+          //   }
+          // );
+
           fetch(
             "https://security-backend-12f1.onrender.com/v1/complaint/report-complaint",
             {
               method: "POST",
               body: JSON.stringify({
-                complaint_id: data.data.id,
-                email: "glowreyahe4ma@gmail.com", // add the email of the recipent here
+                complaint_id: String(data.data),
+                email: "chimdi4332@gmail.com", // add the email of the recipent here
               }),
               headers: {
                 "Content-Type": "application/json",
               },
             }
           );
-=======
-          fetch("https://security-backend-12f1.onrender.com/v1/complaint/report-complaint", {
-            method: "POST",
-            body: JSON.stringify({
-              complaint_id: String(data.data),
-              email: 'udochukwukaonyela@gmail.com' // add the email of the recipent here
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          
-          })
->>>>>>> f909315250c3a1682dec2c6d7766da0e957a303a
         } else {
           // TODO: Handle error
         }
@@ -133,7 +134,7 @@ export function LogComplaint() {
               required
               name="reported_at"
               value={formState.reported_at}
-              onChange={handleChange}
+              onChange={handleChange} 
             />
           </div>
           <div className="location">

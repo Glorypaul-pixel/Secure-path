@@ -59,7 +59,6 @@ export default function Home() {
         id="section"
         className="cursor-default relative text-center text-white flex flex-col items- center justify-center"
       >
-      
         <div id="home" className="Hero pt-32">
           <h2 className="   text-5xl font-bold items-center justify-center pt-24">
             Welcome to Secure Path: UNN Edition!
@@ -130,11 +129,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section1" id="statistics">
+      {/* <section className="section1" id="statistics">
         <div>
           <h1>STATISTICS</h1>
         </div>
-      </section>
+      </section> */}
       <section id="contact">
         <div className="text-white pt-20">
           <h1 className="text-2xl pb-10 underline underline-offset-8 text-center">
