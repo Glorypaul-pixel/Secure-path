@@ -56,7 +56,7 @@ export function LogComplaint() {
       method: "POST",
       body: formData,
     };
-    fetch("http://localhost:3005/v1/complaint/create", reqObj)
+    fetch("https://security-backend-12f1.onrender.com/v1/complaint/create", reqObj)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
