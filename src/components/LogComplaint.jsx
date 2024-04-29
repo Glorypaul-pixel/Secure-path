@@ -70,7 +70,7 @@ export function LogComplaint() {
           fetch("https://security-backend-12f1.onrender.com/v1/complaint/report-complaint", {
             method: "POST",
             body: JSON.stringify({
-              complaint_id: data.data,
+              complaint_id: String(data.data),
               email: 'udochukwukaonyela@gmail.com' // add the email of the recipent here
             }),
             headers: {
