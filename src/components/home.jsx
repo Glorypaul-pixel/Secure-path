@@ -2,47 +2,80 @@ import "../index.css";
 import Image from "../assets/images/about.jpeg";
 // import { Input } from "postcss";
 import { crime, location } from "../data/_index";
+let sections = document.querySelectorAll("section");
+let navLinks = document.querySelectorAll("header nav a");
+window.onscroll = () => {
+  sections.forEach((sec) => {
+    let top = window.scrollY;
+    let offset = sec.offsetTop - 150;
+    let height = sec.offsetHeight;
+    let id = sec.getAttribute("id");
+    if (top >= offset && top < offset + height) {
+      navLinks.forEach((links) => {
+        links.classList.remove("active");
+        document
+          .querySelector("header nav a[href*=" + id + "]")
+          .classList.add("active");
+      });
+    }
+  });
+};
 export default function Home() {
   return (
     <div>
       <section
         id="section"
-        className="cursor-default relative text-center text-white flex flex-col items- center justify-center Hero"
+        className="cursor-default relative text-center text-white flex flex-col items- center justify-center"
       >
-        <div className="fixed top-0 w-full flex  items-center shadow-inner bg-red-900 bg-opacity-90 p-5 text-white lg:flex-row">
+        <header className="fixed top-0 w-full flex  items-center shadow-inner bg-gradient-to-r from-purple-500 to-pink-500 bg-opacity-90 p-5 text-white lg:flex-row">
           <div className=" cursor-default font-tino flex  bold tracking-wider items-center w-3/6">
-            <h1 className="text-[2rem] font-bold ">Secure Path</h1>
+            <h1 className="text-[2rem] font-bold">Secure Path</h1>
           </div>
-          <div className="space-x-8 justify-between w-3/5 flex md:flex-row my-0 mx-auto text-white">
+          <nav className="space-x-8 justify-between w-4/5 flex md:flex-row my-0 mx-auto text-white">
+            <a href="#home" className="active">
+              <p>Home</p>
+              <span></span>
+            </a>
             <a href="#logcomplain">
-              <p>Log Complaint</p>
+              <p>
+                Log Complaint <span></span>
+              </p>
             </a>
 
             <a href="#about">
-              <p>About</p>
+              <p>
+                About <span></span>
+              </p>
             </a>
             <a href="#statistics">
-              <p>Statistics</p>
+              <p>
+                Statistics <span></span>
+              </p>
             </a>
             <a href="#contact">
-              <p>Contact</p>
+              <p>
+                Contact <span></span>
+              </p>
             </a>
-          </div>
+          </nav>
+        </header>
+        <div id="home" className="Hero pt-32">
+          <h2 className="   text-5xl font-bold items-center justify-center pt-24">
+            Welcome to Secure Path: UNN Edition!
+          </h2>
+          <p className="text-zinc-400 px-8">
+            At Secure Path, we are dedicated to enhancing safety on the
+            University of Nigeria, Nsukka campus. Our mission is to keep
+            students, faculty, and staff informed about crime hotspots, security
+            measures, and effective safety strategies. Together, let cultivate a
+            secure and thriving environment for learning at University of
+            Nigeria, Nsukka.
+          </p>
         </div>
-        <h2 className="text-5xl font-bold items-center justify-center pt-24">
-          Welcome to Secure Path: UNN Edition!
-        </h2>
-        <p className="text-zinc-400 px-8">
-          At Secure Path, we are dedicated to enhancing safety on the University
-          of Nigeria, Nsukka campus. Our mission is to keep students, faculty,
-          and staff informed about crime hotspots, security measures, and
-          effective safety strategies. Together, let cultivate a secure and
-          thriving environment for learning at University of Nigeria, Nsukka.
-        </p>
       </section>
       <section id="logcomplain">
         <div className="form">
-          <form>
+          <form className="bg-gradient-to-r from-purple-500 to-pink-500">
             <h1 className=" text-white text-2xl underline-offset-8 underline p-4 log pb-4">
               Log Complain
             </h1>
@@ -100,8 +133,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className=" mt-12 text-white bg-red-900">
-        <div className=" text-white bg-red-900 pt-4 pb-12">
+      <section
+        id="about"
+        className=" mt-12 text-white bg-gradient-to-r from-purple-500 to-pink-500"
+      >
+        <div className=" text-white pt-4 pb-12">
           <h1 className="text-center text-2xl mt-16 ">ABOUT PAGE</h1>
           <p className="text-sm pb-8 text-center">
             Securing school environments through proactive crime prevention with
@@ -145,7 +181,7 @@ export default function Home() {
             security at the University of Nigeria, Nsukka. Secure Path -
             Enhancing Campus Safety through Innovation */}
               </p>
-              <button type="button" className="bg-red-900 bttn ">
+              <button type="button" className="text-purple-700 bttn ">
                 Read More
               </button>
             </div>
@@ -158,12 +194,12 @@ export default function Home() {
         </div>
       </section>
       <section id="contact">
-        <div className="text-red-900 pt-20">
+        <div className="text-white pt-20">
           <h1 className="text-2xl pb-10 underline underline-offset-8 text-center">
             UNN Security Department Contact
           </h1>
           <div className="map pt mb-10 flex justify-between  ml-5 mr-5 leading-8 items-center">
-            <div>
+            <div className="unn-map">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15844.800632128541!2d7.4115263!3d6.866602!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1044e7defeff9725%3A0xffb8a28c30660e7d!2sUniversity%20of%20Nigeria%2C%20UNN%20Nsukka!5e0!3m2!1sen!2sng!4v1713743702994!5m2!1sen!2sng"
                 width={400}
@@ -174,7 +210,7 @@ export default function Home() {
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
-            <div className="text-red-900 ul">
+            <div className="text-white ul">
               <ul>
                 <li>University of Nigeria Security Department,</li>
                 <li>Adjacent Main gate, UNN.</li>
@@ -188,6 +224,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+      <section className="bg-gradient-to-r from-purple-500 to-pink-500 p-6">
+
       </section>
     </div>
   );
