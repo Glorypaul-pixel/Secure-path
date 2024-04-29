@@ -63,14 +63,15 @@ export function LogComplaint() {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         if (data.success) {
           setSubmitted(true);
           setFormState(initialState);
           fetch("https://security-backend-12f1.onrender.com/v1/complaint/report-complaint", {
             method: "POST",
             body: JSON.stringify({
-              complaint_id: data.data.id,
-              email: '' // add the email of the recipent here
+              complaint_id: data.data,
+              email: 'udochukwukaonyela@gmail.com' // add the email of the recipent here
             }),
             headers: {
               "Content-Type": "application/json",
