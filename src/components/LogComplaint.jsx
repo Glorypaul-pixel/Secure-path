@@ -56,7 +56,10 @@ export function LogComplaint() {
       method: "POST",
       body: formData,
     };
-    fetch("https://security-backend-12f1.onrender.com/v1/complaint/create", reqObj)
+    fetch(
+      "https://security-backend-12f1.onrender.com/v1/complaint/create",
+      reqObj
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -164,10 +167,24 @@ export function LogComplaint() {
               accept="image/*, video/*"
             />
           </div>
-          {submitted && 
-          // TODO: Better styling
-          (
-            <p className="text-white">Report submitted successfully</p>
+          {submitted && (
+            // TODO: Better styling
+            <div className="text-white p-4">
+              successfully
+              {/* <div className="flex items-center justify-center h-screen bg-gray-100">
+                <div className="bg-white rounded shadow-lg">
+                  <h1 className="text-2xl font-bold mb-4">
+                    Submission Successful!
+                  </h1>
+                  <p className="text-gray-700 mb-4">
+                    Your form has been successfully submitted.
+                  </p>
+                  <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+                    Go Back
+                  </button>
+                </div>
+              </div> */}
+            </div>
           )}
           <button type="submit" className="btn">
             Submit Report
