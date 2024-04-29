@@ -2,17 +2,18 @@ import { useReducer } from "react";
 import { crime, location } from "../data/_index";
 import { v4 as uuidV4 } from "uuid";
 import { useState } from "react";
+const initialState = {
+  full_name: "",
+  reported_at: "",
+  location: "",
+  type: "",
+  description: "",
+  media: null,
+}
 export function LogComplaint() {
   const [formState, setFormState] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
-    {
-      full_name: "",
-      reported_at: "",
-      location: "",
-      type: "",
-      description: "",
-      media: null,
-    }
+    initialState
   );
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,6 +62,18 @@ export function LogComplaint() {
       .then((data) => {
         if (data.success) {
           setSubmitted(true);
+          setFormState(initialState);
+          fetch("https://security-backend-12f1.onrender.com/v1/complaint/report-complaint", {
+            method: "POST",
+            body: JSON.stringify({
+              complaint_id: data.data.id,
+              email: '' // add the email of the recipent here
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          
+          })
         } else {
           // TODO: Handle error
         }
