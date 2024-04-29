@@ -9,7 +9,7 @@ const initialState = {
   type: "",
   description: "",
   media: null,
-}
+};
 export function LogComplaint() {
   const [formState, setFormState] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
@@ -66,17 +66,19 @@ export function LogComplaint() {
         if (data.success) {
           setSubmitted(true);
           setFormState(initialState);
-          fetch("https://security-backend-12f1.onrender.com/v1/complaint/report-complaint", {
-            method: "POST",
-            body: JSON.stringify({
-              complaint_id: data.data.id,
-              email: '' // add the email of the recipent here
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          
-          })
+          fetch(
+            "https://security-backend-12f1.onrender.com/v1/complaint/report-complaint",
+            {
+              method: "POST",
+              body: JSON.stringify({
+                complaint_id: data.data.id,
+                email: "glowreyahe4ma@gmail.com", // add the email of the recipent here
+              }),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
         } else {
           // TODO: Handle error
         }
