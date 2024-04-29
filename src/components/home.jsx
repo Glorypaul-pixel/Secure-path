@@ -1,18 +1,43 @@
 import "../index.css";
 import Image from "../assets/images/about.jpeg";
-// import { Input } from "postcss";
-import { crime, location } from "../data/_index";
-let sections = document.querySelectorAll("section");
-let navLinks = document.querySelectorAll("header nav a");
-window.onscroll = () => {
+import { useEffect } from "react";
+import { LogComplaint } from "./LogComplaint";
+// no node declaration should be outside
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("header nav a");
+// onscroll should be in a useEffect
+// renders on every clean up
+// window.onscroll = () => {
+//   sections.forEach((sec) => {
+//     // use const when applicable
+//     const top = window.scrollY;
+//     const offset = sec.offsetTop - 150;
+//     const height = sec.offsetHeight;
+//     // dont't select element when applicable
+//     const id = sec.getAttribute("id");
+//     if (top >= offset && top < offset + height) {
+//       navLinks.forEach((links) => {
+//         links.classList.remove("active");
+//         // This is react why are you using querySelector
+//         document
+//           .querySelector("header nav a[href*=" + id + "]")
+//           .classList.add("active");
+//       });
+//     }
+//   });
+// };
+const handleScroll = () => {
   sections.forEach((sec) => {
-    let top = window.scrollY;
-    let offset = sec.offsetTop - 150;
-    let height = sec.offsetHeight;
-    let id = sec.getAttribute("id");
+    // use const when applicable
+    const top = window.scrollY;
+    const offset = sec.offsetTop - 150;
+    const height = sec.offsetHeight;
+    // dont't select element when applicable
+    const id = sec.getAttribute("id");
     if (top >= offset && top < offset + height) {
       navLinks.forEach((links) => {
         links.classList.remove("active");
+        // This is react why are you using querySelector
         document
           .querySelector("header nav a[href*=" + id + "]")
           .classList.add("active");
@@ -21,6 +46,13 @@ window.onscroll = () => {
   });
 };
 export default function Home() {
+  useEffect(() => {
+    // render only once
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div>
       <section
@@ -67,72 +99,13 @@ export default function Home() {
             At Secure Path, we are dedicated to enhancing safety on the
             University of Nigeria, Nsukka campus. Our mission is to keep
             students, faculty, and staff informed about crime hotspots, security
-            measures, and effective safety strategies. Together, let cultivate a
-            secure and thriving environment for learning at University of
+            measures, and effective safety strategies. Together, const cultivate
+            a secure and thriving environment for learning at University of
             Nigeria, Nsukka.
           </p>
         </div>
       </section>
-      <section id="logcomplain">
-        <div className="form">
-          <form className="bg-gradient-to-r from-purple-500 to-pink-500">
-            <h1 className=" text-white text-2xl underline-offset-8 underline p-4 log pb-4">
-              Log Complain
-            </h1>
-            <div className="justify-between ">
-              <label htmlFor="name" className="text-white">
-                Name of Reporter
-              </label>
-              <input
-                className=" flex   "
-                type="text"
-                placeholder="Name of Reporter"
-              />
-            </div>
-            <div>
-              <label className="text-white">Date and time of incident</label>
-              <input type="datetime-local" className="flex  date" required />
-            </div>
-            <div className="location">
-              <label htmlFor="state" className="text-white">
-                Location
-              </label>
-
-              <select id="state" className="" required>
-                {location.map((item, idx) => (
-                  <option key={idx} value={item.value}>
-                    {item.text}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="crime">
-              <label htmlFor="crime" className="text-white">
-                Type of Crime
-              </label>
-              <select id="crime" required>
-                {crime.map((item, idx) => (
-                  <option key={idx} value={item.value}>
-                    {item.text}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className=" text-white description">
-              <label>Description</label>
-              <textarea className="textarea" cols="10" rows="3"></textarea>
-            </div>
-            <div>
-              <label className="text-white">Upload a photo or video</label>
-              <input type="file" className="text-white file" />
-            </div>
-            <button type="submit" className="btn">
-              Submit Report
-            </button>
-          </form>
-        </div>
-      </section>
-
+      <LogComplaint />
       <section
         id="about"
         className=" mt-12 text-white bg-gradient-to-r from-purple-500 to-pink-500"
@@ -225,9 +198,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-gradient-to-r from-purple-500 to-pink-500 p-6">
-
-      </section>
+      <section className="bg-gradient-to-r from-purple-500 to-pink-500 p-6"></section>
     </div>
   );
 }
