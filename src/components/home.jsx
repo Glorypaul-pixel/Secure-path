@@ -59,38 +59,7 @@ export default function Home() {
         id="section"
         className="cursor-default relative text-center text-white flex flex-col items- center justify-center"
       >
-        <header className="fixed top-0 w-full flex  items-center shadow-inner bg-gradient-to-r from-purple-500 to-pink-500 bg-opacity-90 p-5 text-white lg:flex-row">
-          <div className=" cursor-default font-tino flex  bold tracking-wider items-center w-3/6">
-            <h1 className="text-[2rem] font-bold">Secure Path</h1>
-          </div>
-          <nav className="space-x-8 justify-between w-4/5 flex md:flex-row my-0 mx-auto text-white">
-            <a href="#home" className="active">
-              <p>Home</p>
-              <span></span>
-            </a>
-            <a href="#logcomplain">
-              <p>
-                Log Complaint <span></span>
-              </p>
-            </a>
-
-            <a href="#about">
-              <p>
-                About <span></span>
-              </p>
-            </a>
-            <a href="#statistics">
-              <p>
-                Statistics <span></span>
-              </p>
-            </a>
-            <a href="#contact">
-              <p>
-                Contact <span></span>
-              </p>
-            </a>
-          </nav>
-        </header>
+      
         <div id="home" className="Hero pt-32">
           <h2 className="   text-5xl font-bold items-center justify-center pt-24">
             Welcome to Secure Path: UNN Edition!
